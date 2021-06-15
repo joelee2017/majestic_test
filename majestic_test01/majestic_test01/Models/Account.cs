@@ -4,8 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace majestic_test01.Models
 {
-    public class AccountModel
+    public class Account
     {
+
+        /// <summary>
+        /// 編號
+        /// </summary>
+        [Key]
+        public int Id { get; set; }
+
         /// <summary>
         /// 登入信箱
         /// </summary>
@@ -40,14 +47,8 @@ namespace majestic_test01.Models
         /// <summary>
         /// 使用者密碼
         /// </summary>
-        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$")]
-        public string Password { get; set; }
 
-        /// <summary>
-        /// 確認密碼
-        /// </summary>
-        [Compare(nameof(Password))]
-        public string ConfirmPassword { get; set; }
+        public string Password { get; set; }
 
 
         /// <summary>
@@ -59,6 +60,7 @@ namespace majestic_test01.Models
         /// <summary>
         /// 出生年月日
         /// </summary>
+        [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace majestic_test01.Models
         /// <summary>
         /// 加入會員時間
         /// </summary>
-
+        [DataType(DataType.Date)]
         public DateTime CtateTime { get; set; }
 
     }
