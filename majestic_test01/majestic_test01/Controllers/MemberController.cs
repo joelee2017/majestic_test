@@ -76,6 +76,48 @@ namespace majestic_test01.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            MemberModel model = new SeedData().GetMemberData().FirstOrDefault(s => s.Id == id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MemberModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var rnumberid = ConfirmRepeatNumberId(model.NemberId);
+            if (rnumberid)
+            {
+                return View(model);
+            }
+
+            Member member = new Member()
+            {
+                Name = model.Name,
+                Gender = model.Gender,
+                Birthday = model.Birthday,
+                NemberId = model.NemberId,
+                Email = model.Email,
+                Phone = model.Phone,
+                Address = model.Address,
+                School = model.School,
+                Department = model.Department
+            };
+
+            _accountContext.Members.Update(member);
+            _accountContext.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
         /// <summary>
         /// 確認信箱是否重覆
         /// </summary>        

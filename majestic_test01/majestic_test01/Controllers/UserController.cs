@@ -24,7 +24,7 @@ namespace majestic_test01.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edite()
+        public IActionResult Edit()
         {
             var model = new AccountModel
             {
