@@ -9,16 +9,16 @@ namespace majestic_test01.Data
         public List<AccountModel> GetAccountData()
         {
             List<AccountModel> model = new List<AccountModel>();
-
+            var dateTime = DateTime.Now.ToString("d");
             model.Add(new AccountModel
             {
                 Name = "李123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -27,10 +27,10 @@ namespace majestic_test01.Data
                 Name = "張123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime).AddDays(1),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(1),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -39,10 +39,10 @@ namespace majestic_test01.Data
                 Name = "陳123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime).AddDays(2),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(2),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -51,10 +51,10 @@ namespace majestic_test01.Data
                 Name = "趙123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime).AddDays(3),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(3),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -63,10 +63,10 @@ namespace majestic_test01.Data
                 Name = "黃123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime).AddDays(4),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(4),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -75,10 +75,10 @@ namespace majestic_test01.Data
                 Name = "徐123",
                 Name_En = "joe123",
                 Email = "123@123.com",
-                CtateTime = DateTime.Now,
+                CtateTime = Convert.ToDateTime(dateTime).AddDays(5),
                 Phone = 1234567890,
                 Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(5),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
@@ -90,7 +90,8 @@ namespace majestic_test01.Data
         {
             List<MemberModel> model = new List<MemberModel>();
             var dateTime = DateTime.Now.ToString("d");
-            model.Add(new MemberModel {
+            model.Add(new MemberModel
+            {
                 Id = 1,
                 Name = "李123",
                 Gender = Enum.Gender.M,
@@ -98,7 +99,7 @@ namespace majestic_test01.Data
                 NemberId = "A123456789",
                 Email = "123@123.com",
                 Phone = "0912345678",
-                Address ="asdasdadasdad",
+                Address = "asdasdadasdad",
                 School = "123學園",
                 Department = "中文系"
             });
@@ -132,6 +133,43 @@ namespace majestic_test01.Data
             });
 
             return model;
+        }
+
+        public List<ActivitiesModel> GetActivityData()
+        {
+            List<ActivitiesModel> activities = new List<ActivitiesModel>();
+            var dateTime = DateTime.Now.ToString("d");
+            activities.Add(new ActivitiesModel
+            {
+                Id = 1,
+                Name = "跑步",
+                Date = Convert.ToDateTime(dateTime),
+                Charge = 500,
+                Total = 60,
+                Participate = "李123"
+            });
+
+            activities.Add(new ActivitiesModel
+            {
+                Id = 2,
+                Name = "游泳",
+                Date = Convert.ToDateTime(dateTime).AddDays(2),
+                Charge = 800,
+                Total = 20,
+                Participate = "陳123"
+            });
+
+            activities.Add(new ActivitiesModel
+            {
+                Id = 3,
+                Name = "籃球",
+                Date = Convert.ToDateTime(dateTime).AddDays(4),
+                Charge = 1000,
+                Total = 36,
+                Participate = "張123"
+            });
+
+            return activities;
         }
     }
 }

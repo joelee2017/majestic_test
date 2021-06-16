@@ -1,0 +1,78 @@
+﻿@model IEnumerable<majestic_test01.Models.ActivitiesModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Activities" asp-action="Index">
+    <p>
+        活動名稱: <input type="text" name="name" value="@TempData["name"]" />
+        活動起: <input type="date" name="start" value="@TempData["start"]" /> ~
+        活動訖: <input type="date" name="end" value="@TempData["end"]" />
+    </p>
+    <button type="submit">Filter</button>
+    <button type="button" onclick="clear()">Clear</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Charge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Participate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date, "DateyyyyMMdd")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Charge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Participate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    function clear() {
+        $('form input').val('');
+    }
+</script>
