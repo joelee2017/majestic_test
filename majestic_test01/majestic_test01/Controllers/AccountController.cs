@@ -13,8 +13,13 @@ namespace majestic_test01.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(AccountModel model)
+        public IActionResult Login(LoginModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             return View();
         }
 
@@ -26,7 +31,7 @@ namespace majestic_test01.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(AccountModel model)
+        public IActionResult Register(RegisterModel model)
         {
             if (!ModelState.IsValid)
             {
