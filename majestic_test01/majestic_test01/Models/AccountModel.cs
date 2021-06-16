@@ -68,6 +68,11 @@ namespace majestic_test01.Models
 
         public bool Subscription { get; set; }
 
+        /// <summary>
+        /// 大頭貼
+        /// </summary>
+        public byte[] Photo { get; set; }
+
 
         /// <summary>
         /// 加入會員時間

@@ -10,12 +10,25 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edite">
+        <form method="post" asp-action="Edite" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <img src="~/images/faces/face1.jpg" alt="image" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input type="file" asp-for="Photo" name="files" accept=".png, .jpg, .jpeg" class="form-control" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" readonly />
                 <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CtateTime" class="control-label"></label>
+                <input asp-for="CtateTime" class="form-control" readonly />
+                <span asp-validation-for="CtateTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -34,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
-                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control"></select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
