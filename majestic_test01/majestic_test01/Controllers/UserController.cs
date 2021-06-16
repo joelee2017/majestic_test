@@ -17,6 +17,7 @@ namespace majestic_test01.Controllers
             _accountContext = accountContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             List<AccountModel> model = new SeedData().GetAccountData();

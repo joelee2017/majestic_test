@@ -15,7 +15,8 @@ namespace majestic_test01.Controllers
         {
             _accountContext = accountContext;
         }
-
+        
+        [HttpGet]
         public IActionResult Index(string name, string start, string end)
         {
             IEnumerable<ActivitiesModel> model = new SeedData().GetActivityData();
