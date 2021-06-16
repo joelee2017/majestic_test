@@ -24,5 +24,16 @@ namespace majestic_test01.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Register(AccountModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return View();
+        }
     }
 }
