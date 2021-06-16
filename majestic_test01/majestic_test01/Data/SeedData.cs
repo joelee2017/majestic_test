@@ -85,5 +85,53 @@ namespace majestic_test01.Data
 
             return model;
         }
+
+        public List<MemberModel> GetMemberData()
+        {
+            List<MemberModel> model = new List<MemberModel>();
+            var dateTime = DateTime.Now.ToString("d");
+            model.Add(new MemberModel {
+                Id = 1,
+                Name = "李123",
+                Gender = Enum.Gender.M,
+                Birthday = Convert.ToDateTime(dateTime),
+                NemberId = "A123456789",
+                Email = "123@123.com",
+                Phone = "0912345678",
+                Address ="asdasdadasdad",
+                School = "123學園",
+                Department = "中文系"
+            });
+
+            model.Add(new MemberModel
+            {
+                Id = 2,
+                Name = "陳123",
+                Gender = Enum.Gender.M,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(1),
+                NemberId = "A123456788",
+                Email = "321@123.com",
+                Phone = "0912345699",
+                Address = "99dasdadasdad",
+                School = "123學園",
+                Department = "英文系"
+            });
+
+            model.Add(new MemberModel
+            {
+                Id = 3,
+                Name = "張123",
+                Gender = Enum.Gender.M,
+                Birthday = Convert.ToDateTime(dateTime).AddDays(2),
+                NemberId = "A123456766",
+                Email = "45@123.com",
+                Phone = "0912345588",
+                Address = "87dasdadasdad",
+                School = "123學園",
+                Department = "日文系"
+            });
+
+            return model;
+        }
     }
 }
