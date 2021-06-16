@@ -11,5 +11,7 @@ namespace majestic_test01.Data
         }
 
         public DbSet<Account> Accounts { get; set; }
+
+        public DbSet<Member> Members { get; set; }
     }
 }

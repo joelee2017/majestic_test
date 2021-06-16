@@ -1,8 +1,8 @@
 ﻿@model majestic_test01.Models.RegisterModel
 @{ 
     Layout = null;
-    string email = TempData["RepeatEmail"]?.ToString() ?? "";
-    string phone = TempData["RepeatPhone"]?.ToString() ?? "";
+    string email = TempData["RepeatEmail"]?.ToString() ?? string.Empty;
+    string phone = TempData["RepeatPhone"]?.ToString() ?? string.Empty;
     }
 <!DOCTYPE html>
 <html lang="en">
