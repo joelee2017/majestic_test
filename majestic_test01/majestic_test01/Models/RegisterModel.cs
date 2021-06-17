@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace majestic_test01.Models
 {
-    public class RegisterModel
+    public class RegisterModel : IValidatableObject
     {
         /// <summary>
         /// 使用者姓名中文
@@ -35,5 +38,18 @@ namespace majestic_test01.Models
         [Required]
         [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Email == null)
+            {
+                yield return new ValidationResult("信箱不可重覆", new string[] { "Email" });
+            }
+
+            if (Phone == 0)
+            {
+                yield return new ValidationResult("電話不可重覆", new string[] { "Phone" });
+            }
+        }
     }
 }

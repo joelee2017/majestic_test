@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace majestic_test01.Models
 {
@@ -16,16 +15,6 @@ namespace majestic_test01.Models
         /// 活動名稱
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        /// 活動日期起
-        /// </summary>
-        public DateTime DateStart { get; set; }
-
-        /// <summary>
-        /// 活動日期訖
-        /// </summary>
-        public DateTime DateEnd { get; set; }
 
         /// <summary>
         /// 活動日期
@@ -46,5 +35,10 @@ namespace majestic_test01.Models
         /// 參加會員
         /// </summary>
         public string Participate { get; set; }
+
+        /// <summary>
+        /// 參加會員
+        /// </summary>
+        public List<SelectListItem> Participates { get; set; }
     }
 }
