@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace majestic_test01.Controllers
 {
@@ -20,6 +21,9 @@ namespace majestic_test01.Controllers
             _accountContext = accountContext;
         }
 
+        /// <summary>
+        /// 維護個人畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Index()
         {
@@ -27,25 +31,20 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 維護個人編輯畫面
+        /// </summary>
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            var model = new AccountModel
-            {
-                Name = "李123",
-                Name_En = "joe123",
-                Email = "123@123.com",
-                CtateTime = DateTime.Now,
-                Phone = 1234567890,
-                Gender = Enum.Gender.M,
-                Birthday = DateTime.Now,
-                Address = "asdssssssssssssssss",
-                Subscription = true,
-            };
+               AccountModel model = new SeedData().GetAccountData().FirstOrDefault(s => s.Id == id);
             return View(model);
         }
 
 
+        /// <summary>
+        /// 維護個人編輯執行
+        /// </summary>
         [HttpPost]
         public IActionResult Edite(AccountModel model, IFormFile files)
         {        

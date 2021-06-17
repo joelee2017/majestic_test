@@ -20,6 +20,9 @@ namespace majestic_test01.Controllers
             _accountContext = accountContext;
         }
 
+        /// <summary>
+        /// 活動畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Index(string name, string start, string end)
         {
@@ -44,6 +47,9 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 活動新增畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Create()
         {
@@ -52,6 +58,9 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 活動新增執行
+        /// </summary>
         [HttpPost]
         public IActionResult Create(ActivitiesModel model)
         {
@@ -75,6 +84,9 @@ namespace majestic_test01.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// 活動編輯畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -83,6 +95,9 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 活動編輯執行
+        /// </summary>
         [HttpPost]
         public IActionResult Edit(ActivitiesModel model)
         {
@@ -106,6 +121,9 @@ namespace majestic_test01.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// 取得成員名單
+        /// </summary>
         private List<SelectListItem> GetParticipates(string name = null)
         {
             List<SelectListItem> items = new List<SelectListItem>();

@@ -22,12 +22,18 @@ namespace majestic_test01.Controllers
             _accountContext = accountContext;
         }
 
+        /// <summary>
+        /// 登入畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// 登入執行
+        /// </summary>
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model, string returnUrl)
@@ -37,17 +43,19 @@ namespace majestic_test01.Controllers
                 return View(model);
             }
 
-            Claim[] claims = new[] { new Claim("Account", model.Email, null ) };
+            RememberMe(model);
+
+            Claim[] claims = new[] { new Claim("Account", model.Email, null) };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
 
             double loginExpireMinute = this._config.GetValue<double>("LoginExpireMinute");
             await HttpContext.SignInAsync(principal, new AuthenticationProperties()
-                {
-                    IsPersistent = false, 
-                    //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
-                    ExpiresUtc = DateTime.UtcNow.AddSeconds(10)
-                });
+            {
+                IsPersistent = false,
+                //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
+                ExpiresUtc = DateTime.UtcNow.AddSeconds(10)
+            });
 
             if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
@@ -59,6 +67,10 @@ namespace majestic_test01.Controllers
             }
         }
 
+        /// <summary>
+        /// 登出畫面
+        /// </summary>
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
@@ -66,12 +78,19 @@ namespace majestic_test01.Controllers
         }
 
 
+        /// <summary>
+        /// 註冊畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+
+        /// <summary>
+        /// 註冊執行
+        /// </summary>
         [HttpPost]
         public IActionResult Register(RegisterModel model)
         {
@@ -91,6 +110,26 @@ namespace majestic_test01.Controllers
 
 
             return View();
+        }
+
+        /// <summary>
+        /// 登入資訊記憶
+        /// </summary>
+        /// <param name="model"></param>
+        private void RememberMe(LoginModel model)
+        {
+            if (model.RememberMe)
+            {
+                HttpContext.Response.Cookies.Append("email", model.Email);
+                HttpContext.Response.Cookies.Append("password", model.Password);
+                HttpContext.Response.Cookies.Append("rememberme", "yes");
+            }
+            else
+            {
+                HttpContext.Response.Cookies.Delete("email");
+                HttpContext.Response.Cookies.Delete("password");
+                HttpContext.Response.Cookies.Delete("rememberme");
+            }
         }
 
         /// <summary>

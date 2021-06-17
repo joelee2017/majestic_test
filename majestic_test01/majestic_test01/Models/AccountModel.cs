@@ -1,11 +1,15 @@
 ﻿using majestic_test01.Enum;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace majestic_test01.Models
 {
     public class AccountModel
     {
+        /// <summary>
+        /// 編號
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// 登入信箱
         /// </summary>

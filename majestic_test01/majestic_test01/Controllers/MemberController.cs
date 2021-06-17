@@ -19,6 +19,10 @@ namespace majestic_test01.Controllers
             _accountContext = accountContext;
         }
 
+
+        /// <summary>
+        /// 會員畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Index(string name, string birthday)
         {
@@ -41,12 +45,18 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 會員新增畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// 會員新增執行
+        /// </summary>
         [HttpPost]
         public IActionResult Create(MemberModel model)
         {
@@ -80,6 +90,9 @@ namespace majestic_test01.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// 會員編輯畫面
+        /// </summary>
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -88,6 +101,9 @@ namespace majestic_test01.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 會員編輯執行
+        /// </summary>
         [HttpPost]
         public IActionResult Edit(MemberModel model)
         {

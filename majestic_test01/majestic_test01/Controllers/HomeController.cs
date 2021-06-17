@@ -17,15 +17,12 @@ namespace majestic_test01.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// 主頁
+        /// </summary>
         public IActionResult Index()
         {
             var aa = HttpContext.User.Identity.IsAuthenticated;
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
             return View();
         }
 

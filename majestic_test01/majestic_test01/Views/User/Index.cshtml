@@ -28,26 +28,26 @@
                                 </thead>
                                 <tbody>
                                     @{
-                                       int idx = 1;
+                                        int idx = 1;
                                     }
                                     @foreach (var item in Model)
                                     {
 
-                                    <tr>
-                                        <td class="py-1">
-                                            <img src="~/images/faces/face@(idx).jpg" alt="image" />
-                                        </td>
+                                        <tr>
+                                            <td class="py-1">
+                                                <img src="~/images/faces/face@(idx).jpg" alt="image" />
+                                            </td>
 
-                                        <td>
-                                            @item.Name
-                                        </td>
-                                        <td>
-                                            @item.Email
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-warning" asp-controller="User" asp-action="Edite">編輯</a>
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                @item.Name
+                                            </td>
+                                            <td>
+                                                @item.Email
+                                            </td>
+                                            <td>                     
+                                                <a class="btn btn-warning" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">編輯</a>
+                                            </td>
+                                        </tr>
                                         idx++;
                                     }
                                 </tbody>

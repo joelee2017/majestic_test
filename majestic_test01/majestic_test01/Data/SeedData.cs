@@ -12,6 +12,7 @@ namespace majestic_test01.Data
             var dateTime = DateTime.Now.ToString("d");
             model.Add(new AccountModel
             {
+                Id = 0,
                 Name = "李123",
                 Name_En = "joe123",
                 Email = "123@123.com",
@@ -24,6 +25,7 @@ namespace majestic_test01.Data
             });
             model.Add(new AccountModel
             {
+                Id = 2,
                 Name = "張123",
                 Name_En = "joe123",
                 Email = "123@123.com",
@@ -36,6 +38,7 @@ namespace majestic_test01.Data
             });
             model.Add(new AccountModel
             {
+                Id = 3,
                 Name = "陳123",
                 Name_En = "joe123",
                 Email = "123@123.com",
@@ -48,6 +51,7 @@ namespace majestic_test01.Data
             });
             model.Add(new AccountModel
             {
+                Id = 4,
                 Name = "趙123",
                 Name_En = "joe123",
                 Email = "123@123.com",
@@ -60,24 +64,26 @@ namespace majestic_test01.Data
             });
             model.Add(new AccountModel
             {
+                Id = 5,
                 Name = "黃123",
                 Name_En = "joe123",
                 Email = "123@123.com",
                 CtateTime = Convert.ToDateTime(dateTime).AddDays(4),
                 Phone = 1234567890,
-                Gender = Enum.Gender.M,
+                Gender = Enum.Gender.F,
                 Birthday = Convert.ToDateTime(dateTime).AddDays(4),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
             });
             model.Add(new AccountModel
             {
+                Id = 6,
                 Name = "徐123",
                 Name_En = "joe123",
                 Email = "123@123.com",
                 CtateTime = Convert.ToDateTime(dateTime).AddDays(5),
                 Phone = 1234567890,
-                Gender = Enum.Gender.M,
+                Gender = Enum.Gender.F,
                 Birthday = Convert.ToDateTime(dateTime).AddDays(5),
                 Address = "asdssssssssssssssss",
                 Subscription = true,
