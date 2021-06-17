@@ -46,10 +46,10 @@ namespace majestic_test01.Controllers
                 {
                     IsPersistent = false, 
                     //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
-                    ExpiresUtc = DateTime.UtcNow.AddSeconds(20)
+                    ExpiresUtc = DateTime.UtcNow.AddSeconds(10)
                 });
 
-            if (!String.IsNullOrEmpty(returnUrl) && !Url.IsLocalUrl(returnUrl))
+            if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }

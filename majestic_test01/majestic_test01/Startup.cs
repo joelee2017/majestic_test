@@ -36,7 +36,7 @@ namespace majestic_test01
                 option.LoginPath = new PathString("/Account/Login");//µn¤J­¶
                 option.LogoutPath = new PathString("/Account/Logout");//µn¥XAction
 
-                option.ExpireTimeSpan = TimeSpan.FromSeconds(20);
+                option.ExpireTimeSpan = TimeSpan.FromSeconds(10);
 
                 option.SlidingExpiration = true;
             });
@@ -71,8 +71,9 @@ namespace majestic_test01
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    //pattern: "{controller=Home}/{action=Index}/{id?}");
-                    pattern: "{controller=Home}/{action=Index}");
+                      //pattern: "{controller=Home}/{action=Index}/{id?}"
+                      pattern: "{controller=Account}/{action=Login}"
+                    );
             });
         }
     }
