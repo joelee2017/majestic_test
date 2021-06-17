@@ -1,5 +1,6 @@
 ﻿using majestic_test01.Data;
 using majestic_test01.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.Linq;
 
 namespace majestic_test01.Controllers
 {
+    [Authorize]
+    [ResponseCache(NoStore = true)]
     public class MemberController : Controller
     {
         private readonly AccountContext _accountContext;

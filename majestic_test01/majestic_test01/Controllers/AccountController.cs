@@ -1,16 +1,24 @@
 ﻿using majestic_test01.Data;
 using majestic_test01.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace majestic_test01.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly AccountContext _accountContext;
 
-        public AccountController(AccountContext accountContext)
+        public AccountController(IConfiguration config, AccountContext accountContext)
         {
+            this._config = config;
             _accountContext = accountContext;
         }
 
@@ -22,14 +30,39 @@ namespace majestic_test01.Controllers
 
 
         [HttpPost]
-        public IActionResult Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            return View();
+            Claim[] claims = new[] { new Claim("Account", model.Email, null ) };
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
+
+            double loginExpireMinute = this._config.GetValue<double>("LoginExpireMinute");
+            await HttpContext.SignInAsync(principal, new AuthenticationProperties()
+                {
+                    IsPersistent = false, 
+                    //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
+                    ExpiresUtc = DateTime.UtcNow.AddSeconds(20)
+                });
+
+            if (!String.IsNullOrEmpty(returnUrl) && !Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction(nameof(Login));
         }
 
 
