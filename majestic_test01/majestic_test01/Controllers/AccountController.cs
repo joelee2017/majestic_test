@@ -46,7 +46,24 @@ namespace majestic_test01.Controllers
             }
 
             RememberMe(model);
+            await AuthenticationSetup(model);
 
+            // 判斷重導頁面
+            if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        /// <summary>
+        /// 身份驗證
+        /// </summary>
+        private async Task AuthenticationSetup(LoginModel model)
+        {
             Claim[] claims = new[] { new Claim(ClaimTypes.Name, model.Email) };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
@@ -58,15 +75,6 @@ namespace majestic_test01.Controllers
                 //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
                 ExpiresUtc = DateTime.UtcNow.AddSeconds(10)
             });
-
-            if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
         }
 
         /// <summary>
@@ -145,6 +153,10 @@ namespace majestic_test01.Controllers
             {
                 TempData["RepeatEmail"] = "信箱不可重覆";
             }
+            else
+            {
+                TempData.Remove("RepeatEmail");
+            }
             return result;
         }
 
@@ -159,6 +171,11 @@ namespace majestic_test01.Controllers
             {
                 TempData["RepeatPhone"] = "電話不可重覆";
             }
+            else
+            {
+                TempData.Remove("RepeatPhone");
+            }
+
             return result;
         }
     }
