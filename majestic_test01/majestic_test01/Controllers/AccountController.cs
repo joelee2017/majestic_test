@@ -38,6 +38,8 @@ namespace majestic_test01.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model, string returnUrl)
         {
+
+            string user = User.Identity.Name;
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -45,7 +47,7 @@ namespace majestic_test01.Controllers
 
             RememberMe(model);
 
-            Claim[] claims = new[] { new Claim("Account", model.Email, null) };
+            Claim[] claims = new[] { new Claim(ClaimTypes.Name, model.Email) };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
 

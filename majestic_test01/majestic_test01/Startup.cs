@@ -33,8 +33,8 @@ namespace majestic_test01
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
             {
-                //option.LoginPath = new PathString("/Account/Login");//登入頁
-                //option.LogoutPath = new PathString("/Account/Logout");//登出Action
+                option.LoginPath = new PathString("/Account/Login");//登入頁
+                option.LogoutPath = new PathString("/Account/Logout");//登出Action
 
                 option.ExpireTimeSpan = TimeSpan.FromSeconds(10);
 
